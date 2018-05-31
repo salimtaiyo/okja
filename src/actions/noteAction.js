@@ -15,3 +15,7 @@ export function getNotes(){
 export function saveNote(note){
    return dispatch => DB_CONFIG.push(note) 
 }
+
+export function deleteNote(id) {
+    return dispatch => DB_CONFIG.child(id).remove();
+}

@@ -3,7 +3,8 @@ import { DB_CONFIG } from './firebase.js';
 import _ from 'lodash';
 import './css/index.css';
 import { connect } from 'react-redux';
-import { getNotes, saveNote } from './actions/noteAction';
+import { getNotes, saveNote, deleteNote } from './actions/noteAction';
+import NoteCard from './components/NoteCard';
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class App extends Component {
       body: this.state.body
     }
     // DB_CONFIG.push(note);
-    this.props.saveNote();
+    this.props.saveNote(note);
     this.setState({
       title: '',
       body: ''
@@ -48,12 +49,13 @@ class App extends Component {
 
   // displaying notes
   displayNotes = () => {
-    return _.map(this.state.notes, (note,key) => {
+    return _.map(this.props.notes, (note,key) => {
       return(
-        <div key="key">
+        <NoteCard key={key}>
           <h3 className="testt"> {note.title}</h3>
           <p> {note.body}</p>
-        </div>
+          <button className="btn btn-danger" onClick={() => this.props.deleteNote(key)}> Delete </button>
+        </NoteCard>
       )
     });
   }
@@ -90,6 +92,6 @@ function mapStateToProps(state, ownProps) {
       notes: state.notes
   }
 }
-export default connect(mapStateToProps, { getNotes, saveNote }) (App);
+export default connect(mapStateToProps, { getNotes, saveNote, deleteNote }) (App);
 
 
