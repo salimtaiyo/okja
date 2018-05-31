@@ -16,8 +16,6 @@ class App extends Component {
     };
   }
 
-  
-
   // input box 
   change = (event) => {
     // console.log('hey');

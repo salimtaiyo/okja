@@ -11,26 +11,23 @@ import rootReducer from './reducers';
 
 import Login from './components/Login';
 import Header from './components/Header';
+import Home from './components/Home';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
-
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
-
-
 ReactDOM.render(
     <Provider store={store}>
-    <BrowserRouter>
-    <div>
-    <Header />
-    <Switch>
-   <Route path="/" component={App } exact={true}/>
-   <Route path="/login" component={Login } exact={true}/>
-    </Switch>
-    </div>
-    
-    </BrowserRouter>
-        
+        <BrowserRouter>
+            <div>
+            <Header />
+            <Switch>
+                <Route path="/" component={Home} exact={true}/>
+                <Route path="/note" component={App} exact={true}/>
+                <Route path="/login" component={Login} exact={true}/>
+            </Switch>
+            </div>
+        </BrowserRouter>
     </Provider>, 
     document.getElementById('root'));
 registerServiceWorker();

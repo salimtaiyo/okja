@@ -8,9 +8,8 @@ export default class Login extends Component {
             <h1> Login </h1>
         </div>
           <button>
-                Login with Gmail
-            </button>
-       
+                Login 
+          </button>
       </div>
     )
   }
